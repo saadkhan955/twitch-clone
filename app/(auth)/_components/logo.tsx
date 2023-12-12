@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 
 const font = Poppins({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"]
-})
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+});
 
 export const Logo = () => {
   return (
@@ -19,10 +19,17 @@ export const Logo = () => {
           width="80"
         />
       </div>
-      <div className={cn("flex flex-col items-center", font.className)}>
-        <p className="text-xl font-semibold">Gamehub</p>
-        <p className="text-sm text-muted">Let&apos;s Play</p>
+      <div className={cn(
+        "flex flex-col items-center",
+        font.className,
+      )}>
+        <p className="text-xl font-semibold">
+          Gamehub
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Let&apos;s play
+        </p>
       </div>
     </div>
-  )
-}
+  );
+};
