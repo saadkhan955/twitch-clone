@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { ChatInfo } from "./chat-info"
 
 
-interface ChatForumProps {
+interface ChatFormProps {
   onSubmit: () => void
   value: string
   onChange: (value: string) => void
@@ -20,7 +20,7 @@ interface ChatForumProps {
   isDelayed: boolean
 }
 
-export const ChatForum = ({
+export const ChatForm = ({
   onSubmit,
   value,
   onChange,
@@ -28,7 +28,7 @@ export const ChatForum = ({
   isFollowersOnly,
   isFollowing,
   isDelayed,
-}: ChatForumProps) => {
+}: ChatFormProps) => {
 
   const [isDelayedBlocked, setIsDelayedBlocked] = useState(false)
   const isFollowersOnlyAndNotFollowing = isFollowersOnly && !isFollowing
@@ -90,7 +90,7 @@ export const ChatForum = ({
   )
 }
 
-export const ChatForumSkeleton = () => {
+export const ChatFormSkeleton = () => {
   return (
     <div className="flex flex-col items-center gap-y-4 p-3">
       <Skeleton className="w-full h-10">
