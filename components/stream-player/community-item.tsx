@@ -1,12 +1,13 @@
 "use client"
 
-import { cn, stringToColor } from "@/lib/utils"
-import { Hint } from "../hint"
-import { Button } from "../ui/button"
-import { MinusCircle } from "lucide-react"
-import { useTransition } from "react"
-import { onBlock } from "@/actions/block"
 import { toast } from "sonner"
+import { useTransition } from "react"
+import { MinusCircle } from "lucide-react"
+
+import { Hint } from "../hint"
+import { onBlock } from "@/actions/block"
+import { cn, stringToColor } from "@/lib/utils"
+import { Button } from "../ui/button"
 
 interface CommunityItemProps {
   hostName: string
@@ -21,13 +22,15 @@ export const CommunityItem = ({
   participantName,
   participantIdentity,
 }: CommunityItemProps) => {
-
   const [isPending, startTransition] = useTransition();
+
   const color = stringToColor(participantName || "")
   const isSelf = participantName === viewerName;
   const isHost = viewerName === hostName;
+
   const handleBlock = () => {
-    if (!participantName || self || !isHost) return;
+    if (!participantName || isSelf || !isHost) return;
+
     startTransition(() => {
       onBlock(participantIdentity)
         .then(() => toast.success(`Blocked ${participantName}`))
@@ -43,7 +46,7 @@ export const CommunityItem = ({
       <p style={{ color: color }}>
         {participantName}
       </p>
-      {isHost && !self && (
+      {isHost && !isSelf && (
         <Hint label="Block">
           <Button
             variant="ghost"
